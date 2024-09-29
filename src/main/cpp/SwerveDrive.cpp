@@ -52,9 +52,6 @@ SwerveDrive::SwerveDrive()
       m_BackRight_Steer.SetSmartCurrentLimit(Constants::k_Steer_Motor_Smart_Current_Limit);
       m_BackRight_Steer.SetSecondaryCurrentLimit(Constants::k_Steer_Motor_Secondary_Current_Limit);
       m_BackRight_Steer.SetOpenLoopRampRate(Constants::k_Steer_Motor_Open_Loop_Ramp_Rate);
-  //States
-    Code_Gen_Model_U.Is_Absolute_Steering = Constants::Is_Absolute_Steering_Default;
-    Code_Gen_Model_U.Is_Absolute_Translation = Constants::Is_Absolute_Translation_Default;
   //Wheel Offset
     Initalize_Wheel_Offset();
   //CAN Networking
@@ -159,16 +156,6 @@ void SwerveDrive::CoastMode()
   m_FrontRight_Steer.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
   m_BackLeft_Steer.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
   m_BackRight_Steer.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-}
-
-void SwerveDrive::Toggle_Absolute_Translation() 
-{
-  Code_Gen_Model_U.Is_Absolute_Translation = !Code_Gen_Model_U.Is_Absolute_Translation;
-}
-
-void SwerveDrive::Toggle_Absolute_Steering() 
-{
-  Code_Gen_Model_U.Is_Absolute_Steering = !Code_Gen_Model_U.Is_Absolute_Steering;
 }
 
 void SwerveDrive::Initalize_Wheel_Offset() 

@@ -13,12 +13,7 @@
 #include "include/SimulinkSmartDashboardInterface.hh"
 #include "include/FMSInfo.hh"
 #include "include/PhotonVisionInterface.hh"
-#include "include/TelescopingArm.hh"
-#include "include/Intake.hh"
-#include "include/Shooter.hh" 
-#include "include/BallScrew.hh"
-#include "include/LineSensor.hh"
-#include "include/Climber.hh"
+// For each component also add content in this file at the bottom of the private area
 
 //frc
 #include <frc/TimedRobot.h>
@@ -146,33 +141,4 @@ private:
    * Component that reads the field management system info from smart dashboard and puts it into simulink
    */
   FMSInfo m_FMSInfo;
-  /**
-   * Component that runs all motors and sensors for the Intake of the 2024 Robot
-  */
-  Intake m_Intake;
-
-  /**
-   * Component that includes all arms and motors and sensors on the shooter mechanism 2024
-  */
-  Shooter m_Shooter;
-
-  /**
-   * Component that represents the ball screw for the 2024 robot
-  */
-  BallScrew m_BallScrew;
-
-  /**
-   * Compentent that represents each motor and encoder for each arm
-  */
-  TelescopingArm m_TelescopingArm;  
-
-   /**
-   * Component for the autonomous line sensor 
-  */ 
-  LineSensor m_LineSensor;
-
-  /**
-   * Component for the autonomous line sensor 
-  */ 
-  Climber m_Climber;
 };

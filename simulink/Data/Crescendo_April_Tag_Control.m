@@ -111,9 +111,9 @@ AT_Target_Tag_16_Field_Angle = angle;
 clear d_offset tag angle temp
 
 % Speaker X and Y Coordinates
-AT_Tag_4_Coordinate_X = AT_Data(4,1)*0.0254; % convert from inches to meters
-AT_Tag_4_Coordinate_Y = AT_Data(4,2)*0.0254; % convert from inches to meters
-AT_Tag_7_Coordinate_X = AT_Data(7,1)*0.0254; % convert from inches to meters
-AT_Tag_7_Coordinate_Y = AT_Data(7,2)*0.0254; % convert from inches to meters
+% AT_Tag_4_Coordinate_X = AT_Data(4,1)*0.0254; % convert from inches to meters
+% AT_Tag_4_Coordinate_Y = AT_Data(4,2)*0.0254; % convert from inches to meters
+% AT_Tag_7_Coordinate_X = AT_Data(7,1)*0.0254; % convert from inches to meters
+% AT_Tag_7_Coordinate_Y = AT_Data(7,2)*0.0254; % convert from inches to meters
 
 clear AT_Data

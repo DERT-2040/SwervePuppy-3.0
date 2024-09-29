@@ -4,6 +4,9 @@
 
 //local
 #include "include/Robot.hh"
+//  Components are included in Robot.hh
+//  For each component there is a .cpp file in the 'cpp' folder.
+//  For each component there is a .hh file in the 'include' folder
 
 void Robot::RobotInit()
 {

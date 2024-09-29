@@ -61,16 +61,6 @@ public:
     void CoastMode();
 
     /**
-     * Toggles the robot's driving controls from relative to field oriented and vise versa
-     */
-    void Toggle_Absolute_Translation();
-
-    /**
-     * Toggles the robot's steering controls from relative to field oriented and vise versa
-     */
-    void Toggle_Absolute_Steering();
-
-    /**
      * Creates the wheel offset preferences if they have not been created
      */
     void Initalize_Wheel_Offset();
