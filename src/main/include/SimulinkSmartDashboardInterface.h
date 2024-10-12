@@ -6,7 +6,7 @@
 #include <networktables/RawTopic.h>
 #include <networktables/NetworkTableInstance.h>
 #include "Code_Gen_Model_ert_rtw\Code_Gen_Model.h"
-#include "lib/include/Component.hh"
+#include "lib/include/Component.h"
  
 class SimulinkSmartDashboardInterface : public Component
 {

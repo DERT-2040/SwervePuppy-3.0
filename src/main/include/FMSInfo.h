@@ -1,24 +1,12 @@
 #pragma once
-
-//local
-#include "lib/include/Component.hh"
-#include <include/Constants.h>
-//crte
-#include <ctre/phoenix6/Pigeon2.hpp>
-//Simulink
+#include <frc/DriverStation.h>
+#include "lib/include/Component.h"
 #include "Code_Gen_Model_ert_rtw/Code_Gen_Model.h"
 
-
-class IMU : public Component
+class FMSInfo : public Component
 {
 public:
-    IMU();
-    /**
-     * Resets yaw zero
-     * 
-     */
-    void Reset();
-    /**
+  /**
      * Runs before the step function is called in the main loop
      */
     void PreStepCallback();
@@ -43,9 +31,4 @@ public:
      * X X X X                 Class Specific Methods                  X X X X
      * X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X
      */
-private:
-    /**
-     * Pigeon 2 IMU from CRTE
-    */
-    ctre::phoenix6::hardware::Pigeon2 m_Pigeon2{Constants::k_Pigeon2_Device_ID, static_cast<std::string>(Constants::k_Pigeon2_Device_Name)};
 };

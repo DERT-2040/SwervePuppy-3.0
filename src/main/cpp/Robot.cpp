@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 //local
-#include "include/Robot.hh"
+#include "include/Robot.h"
 //  Components are included in Robot.hh
 //  For each component there is a .cpp file in the 'cpp' folder.
 //  For each component there is a .hh file in the 'include' folder
@@ -49,32 +49,24 @@ void Robot::SimulationPeriodic() {}
 void Robot::PreStep() 
 {
   for (auto m_Component : Component::AllCreatedComponents)
-  {
     m_Component->PreStepCallback();
-  }
 }
 
 void Robot::PostStep() 
 {
   for (auto m_Component : Component::AllCreatedComponents)
-  {
     m_Component->PostStepCallback();
-  }
 }
 
 void Robot::GameInitValues() 
 {
   for (auto m_Component : Component::AllCreatedComponents)
-  {
     m_Component->GameStateChangeCallback();
-  }
 }
 
 void Robot::UpdateSmartDashboardValues(){
   for (auto m_Component : Component::AllCreatedComponents)
-  {
     m_Component->SmartDashboardCallback();
-  }
   frc::SmartDashboard::UpdateValues();
 }
 

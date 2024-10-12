@@ -6,13 +6,13 @@
 
 //local
 #include "Code_Gen_Model_ert_rtw\Code_Gen_Model.h"
-#include "lib/include/Component.hh"
-#include "include/HIDs.hh"
-#include "include/IMU.hh"
-#include "include/SwerveDrive.hh"
-#include "include/SimulinkSmartDashboardInterface.hh"
-#include "include/FMSInfo.hh"
-#include "include/PhotonVisionInterface.hh"
+#include "lib/include/Component.h"
+#include "include/HIDs.h"
+#include "include/IMU.h"
+#include "include/SwerveDrive.h"
+#include "include/SimulinkSmartDashboardInterface.h"
+#include "include/FMSInfo.h"
+#include "include/PhotonVisionInterface.h"
 // For each component also add content in this file at the bottom of the private area
 
 //frc

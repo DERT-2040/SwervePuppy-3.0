@@ -3,12 +3,13 @@
 //local
 #include "include/Constants.h"
 #include "Code_Gen_Model_ert_rtw\Code_Gen_Model.h"
-#include "lib/include/Component.hh"
+#include "lib/include/Component.h"
 //frc
 #include <frc/Joystick.h>
 #include <frc/GenericHID.h>
 // #include <frc/XboxController.h>
 
+namespace HID = Constants::HID;
 
 class HIDs : public Component
 {
@@ -79,7 +80,7 @@ private:
      *    9: Left Joystick
      *    10: Right Joystick
      */
-    frc::GenericHID m_Gamepad{Constants::k_Gamepad_Port};
+    frc::GenericHID m_Gamepad{HID::k_Gamepad_Port};
 
     /*
      * XBOX Controller
@@ -89,10 +90,10 @@ private:
     /**
      * Joystick that is on the index of k_Drive_Joystick_Port
      */
-    frc::Joystick m_Left_Joystick{Constants::k_Right_Joystick_Port};
+    frc::Joystick m_Left_Joystick{HID::k_Right_Joystick_Port};
 
     /**
      * Joystick that is on the index of k_Steer_Joystick_Port
      */
-    frc::Joystick m_Right_Joystick{Constants::k_Left_Joystick_Port};
+    frc::Joystick m_Right_Joystick{HID::k_Left_Joystick_Port};
 };

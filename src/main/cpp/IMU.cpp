@@ -1,5 +1,5 @@
 //local
-#include "include/IMU.hh"
+#include "include/IMU.h"
 
 void IMU::PreStepCallback()
 {

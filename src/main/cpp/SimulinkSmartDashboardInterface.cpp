@@ -1,7 +1,7 @@
 // This file has been auto generated from a Matlab script
 // Do not manually edit since changes will be lost
 // Janelyn <3
-#include "include/SimulinkSmartDashboardInterface.hh"
+#include "include/SimulinkSmartDashboardInterface.h"
  
 SimulinkSmartDashboardInterface::SimulinkSmartDashboardInterface()
 {

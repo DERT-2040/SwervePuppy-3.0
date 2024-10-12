@@ -1,5 +1,5 @@
 //local
-#include "include\HIDs.hh"
+#include "include\HIDs.h"
 
 
 void HIDs::PreStepCallback() {

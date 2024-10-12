@@ -10,7 +10,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <math.h>
 
-#include "lib/include/Component.hh"
+#include "lib/include/Component.h"
 #include "Code_Gen_Model_ert_rtw/Code_Gen_Model.h"
 
 #include <memory>

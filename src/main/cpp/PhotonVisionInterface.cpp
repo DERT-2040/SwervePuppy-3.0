@@ -1,4 +1,4 @@
-#include "include/PhotonVisionInterface.hh"
+#include "include/PhotonVisionInterface.h"
 
 void PhotonVisionInterface::PreStepCallback() 
 {
