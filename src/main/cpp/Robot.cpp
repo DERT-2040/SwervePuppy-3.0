@@ -27,7 +27,7 @@ void Robot::RobotPeriodic()
 
   PostStep(); //Robot wide PostStep
   m_Tracer.AddEpoch("After PostStep");
-  // m_Tracer.PrintEpochs();
+  m_Tracer.PrintEpochs();
   UpdateSmartDashboardValues();
 }
 

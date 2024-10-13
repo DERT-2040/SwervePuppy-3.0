@@ -12,7 +12,7 @@
 #include "include/SwerveDrive.hh"
 #include "include/SimulinkSmartDashboardInterface.hh"
 #include "include/FMSInfo.hh"
-#include "include/PhotonVisionInterface.hh"
+// #include "include/PhotonVisionInterface.hh"
 // For each component also add content in this file at the bottom of the private area
 
 //frc
@@ -126,7 +126,7 @@ private:
    */
   SwerveDrive m_SwerveDrive;
   
-  PhotonVisionInterface m_PhotonVisionInterface;
+  // PhotonVisionInterface m_PhotonVisionInterface;
   /**
    * Monitor code execution time
    */
