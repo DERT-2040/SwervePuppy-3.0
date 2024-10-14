@@ -33,7 +33,7 @@ namespace Constants
             static constexpr NeoSparkCreateInfo defaultDriveCreateInfo
             {
                 -1,                                    // canID
-                true,                                  // isReversed
+                false,                                 // isReversed
                 15,                                    // smartCurrentLimit
                 15,                                    // secondaryCurrentLimit
                 0.00000001,                            // openLoopRampRate
@@ -68,7 +68,7 @@ namespace Constants
             static constexpr NeoSparkCreateInfo defaultSteerCreateInfo
             {
                 -1,                                    // canID
-                false,                                 // isReversed
+                true,                                  // isReversed
                 20,                                    // smartCurrentLimit
                 20,                                    // secondaryCurrentLimit
                 0.1,                                   // openLoopRampRate
