@@ -126,7 +126,8 @@ private:
    */
   SwerveDrive m_SwerveDrive;
   
-  PhotonVisionInterface m_PhotonVisionInterface;
+  // PhotonVisionInterface m_PhotonVisionInterface;
+  
   /**
    * Monitor code execution time
    */
