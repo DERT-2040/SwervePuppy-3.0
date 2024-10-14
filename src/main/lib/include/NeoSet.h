@@ -13,7 +13,6 @@
 class NeoSet
 {
 public:
-    NeoSet();
     NeoSet(std::initializer_list<NeoSparkCreateInfo> createInfos);
     void stop();
     void set(double dutyCycle);

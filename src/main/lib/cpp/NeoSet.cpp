@@ -1,7 +1,5 @@
 #include "lib/include/NeoSet.h"
 
-NeoSet::NeoSet() {}
-
 NeoSet::NeoSet(std::initializer_list<NeoSparkCreateInfo> createInfos)
 {
     for(auto createInfo : createInfos)
