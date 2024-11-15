@@ -13,11 +13,9 @@ struct KrakenTalonCreateInfo
     //motor
     int canID;
     bool isReversed = false;
-    uint8_t smartCurrentLimit = 15;
-    double secondaryCurrentLimit = 15;
-    double openLoopRampRate = 0.00000001;
-    int status1PeriodicFramePeriod = 60;
-    int status2PeriodicFramePeriod = 60;
+    double supplyCurrentLimit = 15;
+    double openLoopRampPeriod = 0.00000001;
+
     //sensor
     bool includeSensor;
     int countsPerRev = 42;

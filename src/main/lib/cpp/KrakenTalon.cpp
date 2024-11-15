@@ -6,13 +6,6 @@ KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo)
     initalizeTalon(createInfo);
 }
 
-KrakenTalon::KrakenTalon(int canID, bool includeSensor)
-: talonController{canID}
-{
-    finalCreateInfo.includeSensor = includeSensor;
-    initalizeTalon(finalCreateInfo);
-}
-
 KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo, int canID, bool isReversed)
 : talonController{canID}
 {
@@ -26,17 +19,19 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
     talonController.SetInverted(createInfo.isReversed);
     
     // Set Current Limiting
-    auto& talonConfigurator = talonController.GetConfigurator();
     ctre::phoenix6::configs::CurrentLimitsConfigs limitConfigs;
-    limitConfigs.SupplyCurrentLimit(createInfo.);
-    limitConfigs.SupplyCurrentLimitEnable = true;
-    talonConfigurator.Apply(limitConfigs);
+    limitConfigs.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
+    limitConfigs.StatorCurrentLimitEnable = true;
 
     // Set Open Loop Ramp Rate
     ctre::phoenix6::configs::OpenLoopRampsConfigs rampPeriod;
-    rampPeriod.DutyCycleOpenLoopRampPeriod(createInfo.openLoopRampRate);
+    rampPeriod.DutyCycleOpenLoopRampPeriod = createInfo.openLoopRampPeriod;
 
+    // Get Motor Speed
+    double speed = talonController.GetVelocity()*60; // Convert from RPS to RPM
 
+    // Get Motor Position
+    double position = talonController.GetPosition();
 
 
     /*
