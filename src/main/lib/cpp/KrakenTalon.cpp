@@ -18,21 +18,24 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
     // Set Direction
     talonController.SetInverted(createInfo.isReversed);
     
-    // Set Current Limiting
-    ctre::phoenix6::configs::CurrentLimitsConfigs limitConfigs;
-    limitConfigs.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
-    limitConfigs.StatorCurrentLimitEnable = true;
-
     // Set Open Loop Ramp Rate
     ctre::phoenix6::configs::OpenLoopRampsConfigs rampPeriod;
     rampPeriod.DutyCycleOpenLoopRampPeriod = createInfo.openLoopRampPeriod;
 
-    // Get Motor Speed
-    double speed = talonController.GetVelocity()*60; // Convert from RPS to RPM
+    // Set Current Limiting Configuration
+    auto& talonConfigurator = talonController.GetConfigurator();
+    ctre::phoenix6::configs::CurrentLimitsConfigs limitConfigs;
+    limitConfigs.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
+    limitConfigs.StatorCurrentLimitEnable = true;
+    talonConfigurator.Apply(limitConfigs);
 
-    // Get Motor Position
-    double position = talonController.GetPosition();
+    // Get Motor Encoder Velocity
+    auto& encoderVelocitySignal = talonController.GetVelocity();
+    double encoderVelocity = encoderVelocitySignal.GetValueAsDouble()*60;    // Convert from Rev/Sec to Rev/Min
 
+    // Get Motor Encoder Position
+    auto& encoderPositionSignal = talonController.GetPosition();
+    double encoderPosition = encoderPositionSignal.GetValueAsDouble();
 
     /*
     sparkMax.RestoreFactoryDefaults(); - no equivalent function
