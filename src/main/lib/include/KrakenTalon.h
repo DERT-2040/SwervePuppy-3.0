@@ -6,7 +6,6 @@
 #include <ctre/Phoenix.h>
 #include <ctre/phoenix6/TalonFX.hpp>
 #include <ctre/phoenix6/core/CoreTalonFX.hpp>
-#include <ctre/phoenix/motorcontrol/can/TalonFX.h>
 #include <ctre/phoenix6/configs/Configs.hpp>
 
 struct KrakenTalonCreateInfo
@@ -53,7 +52,6 @@ public:
     void getPositionCallback();
     void getVelocityCallback();
     void setDutyCycleCallback();
-    ctre::phoenix6::configs::CurrentLimitsConfigs limitConfigs{};
     ctre::phoenix6::hardware::TalonFX talonController;
     KrakenTalonCreateInfo finalCreateInfo{};
 private:

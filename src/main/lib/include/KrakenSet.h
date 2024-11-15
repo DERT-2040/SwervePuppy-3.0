@@ -5,23 +5,23 @@
 #include <vector>
 #include <functional>
 //local
-#include "lib/include/NeoSpark.h"
+#include "lib/include/KrakenTalon.h"
 //rev
-#include <rev/CANSparkMax.h>
-#include <rev/SparkRelativeEncoder.h>
+#include <ctre/phoenix6/TalonFX.hpp>
+#include <ctre/phoenix6/core/CoreTalonFX.hpp>
 
-class NeoSet
+class KrakenSet
 {
 public:
-    NeoSet(std::initializer_list<NeoSparkCreateInfo> createInfos);
+    KrakenSet(std::initializer_list<KrakenTalon> createInfos);
     void stop();
     void set(double dutyCycle);
     void setAreBreakingWhenIdle(bool areBreaking);
     void pushData();
     void pullCommands();
 private:
-    void addCallbacks(NeoSpark& motor);
-    std::vector<std::unique_ptr<NeoSpark>> motorSet;
+    void addCallbacks(KrakenTalon& motor);
+    std::vector<std::unique_ptr<KrakenTalon>> motorSet;
     std::vector<std::function<void()>> pushDataCalbacks;
     std::vector<std::function<void()>> pullCommandCalbacks;
 };
