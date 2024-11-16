@@ -15,6 +15,7 @@ struct KrakenTalonCreateInfo
     bool isReversed = false;
     double supplyCurrentLimit = 15;
     double openLoopRampPeriod = 0;
+    int neutralMode = 1;  // coast = 0, brake = 1
 
     //sensor
     double* setDutyCycleCallback = nullptr;

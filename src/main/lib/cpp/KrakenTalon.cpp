@@ -1,6 +1,6 @@
 #include "lib/include/KrakenTalon.h"
 
-// Create talon controller with the CAN ID
+// Create talon controller with CAN ID
 KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo)
 : talonController{createInfo.canID}
 {
@@ -14,20 +14,25 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
     auto& talonConfigurator = talonController.GetConfigurator();
 
     // Set Direction
-    ctre::phoenix6::configs::MotorOutputConfigs motorDirection;
-    motorDirection.Inverted = createInfo.isReversed;
-    talonConfigurator.Apply(motorDirection);
+    ctre::phoenix6::configs::MotorOutputConfigs motorDirectionConfig;
+    motorDirectionConfig.Inverted = createInfo.isReversed;
+    talonConfigurator.Apply(motorDirectionConfig);
 
     // Set Open Loop Ramp Period
-    ctre::phoenix6::configs::OpenLoopRampsConfigs rampPeriod;
-    rampPeriod.DutyCycleOpenLoopRampPeriod = createInfo.openLoopRampPeriod;
-    talonConfigurator.Apply(rampPeriod);
+    ctre::phoenix6::configs::OpenLoopRampsConfigs rampPeriodConfig;
+    rampPeriodConfig.DutyCycleOpenLoopRampPeriod = createInfo.openLoopRampPeriod;
+    talonConfigurator.Apply(rampPeriodConfig);
 
     // Set Current Limiting Configuration
-    ctre::phoenix6::configs::CurrentLimitsConfigs currentLimits;
-    currentLimits.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
-    currentLimits.StatorCurrentLimitEnable = true;
-    talonConfigurator.Apply(currentLimits);
+    ctre::phoenix6::configs::CurrentLimitsConfigs currentLimitsConfig;
+    currentLimitsConfig.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
+    currentLimitsConfig.StatorCurrentLimitEnable = true;
+    talonConfigurator.Apply(currentLimitsConfig);
+
+    // Set Neutral Mode Output Behavior
+    ctre::phoenix6::configs::MotorOutputConfigs neutralModeConfig;
+    neutralModeConfig.NeutralMode = createInfo.neutralMode;
+    talonConfigurator.Apply(neutralModeConfig);
 
     finalCreateInfo = createInfo;
 }

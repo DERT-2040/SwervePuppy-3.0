@@ -4,7 +4,7 @@ SwerveDrive::SwerveDrive()
 {
   //Wheel Offset
     Initalize_Wheel_Offset();   
-    swerveDriveMotors.setAreBreakingWhenIdle(true); //break mode
+    swerveSteerMotors.setAreBreakingWhenIdle(true); //brake mode
 }
  
 void SwerveDrive::PreStepCallback() 
@@ -30,13 +30,13 @@ void SwerveDrive::PostStepCallback()
   if(Code_Gen_Model_Y.Enable_Wheels)
   { // Wheels On
     std::cout << "Swerve Motors Enabled\n";
-    swerveDriveMotors.setAreBreakingWhenIdle(true); 
+    swerveSteerMotors.setAreBreakingWhenIdle(true); //brake mode     
   }
   else if(Code_Gen_Model_Y.Disable_Wheels)
   { //Wheels Off
     std::cout << "Swerve Motors Disabled\n";
-    swerveDriveMotors.stop();
-    swerveDriveMotors.setAreBreakingWhenIdle(false); //coast mode
+    swerveSteerMotors.stop();
+    swerveSteerMotors.setAreBreakingWhenIdle(false); //coast mode    
   }
   else if(Code_Gen_Model_Y.Reset_Wheel_Offsets)
   { //Recal Wheels

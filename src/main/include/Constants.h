@@ -35,8 +35,9 @@ namespace Constants
             {
                 -1,                           // canID
                 false,                        // isReversed
-                15,                           // supplyCurrentLimit
-                0,                            // openLoopRampPeriod
+                80,                           // supplyCurrentLimit
+                0,                            // openLoopRampPeriod (seconds)
+                1,                            // neutralMode (coast = 0, brake = 1)
             };
             static KrakenTalonCreateInfo frontLeft  = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
                                                                                  37, //CAN ID
