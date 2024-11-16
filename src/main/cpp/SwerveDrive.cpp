@@ -4,7 +4,8 @@ SwerveDrive::SwerveDrive()
 {
   //Wheel Offset
     Initalize_Wheel_Offset();   
-    swerveSteerMotors.setAreBreakingWhenIdle(true); //brake mode
+    swerveDriveMotors.setBrakeModeWhenIdle(true); //brake mode
+    swerveSteerMotors.setBrakeModeWhenIdle(true); //brake mode
 }
  
 void SwerveDrive::PreStepCallback() 
@@ -30,13 +31,16 @@ void SwerveDrive::PostStepCallback()
   if(Code_Gen_Model_Y.Enable_Wheels)
   { // Wheels On
     std::cout << "Swerve Motors Enabled\n";
-    swerveSteerMotors.setAreBreakingWhenIdle(true); //brake mode     
+    swerveDriveMotors.setBrakeModeWhenIdle(true); //brake mode
+    swerveSteerMotors.setBrakeModeWhenIdle(true); //brake mode
   }
   else if(Code_Gen_Model_Y.Disable_Wheels)
   { //Wheels Off
     std::cout << "Swerve Motors Disabled\n";
+    swerveDriveMotors.stop();
     swerveSteerMotors.stop();
-    swerveSteerMotors.setAreBreakingWhenIdle(false); //coast mode    
+    swerveDriveMotors.setBrakeModeWhenIdle(false); //coast mode
+    swerveSteerMotors.setBrakeModeWhenIdle(false); //coast mode    
   }
   else if(Code_Gen_Model_Y.Reset_Wheel_Offsets)
   { //Recal Wheels
@@ -48,8 +52,10 @@ void SwerveDrive::PostStepCallback()
   }
 
   if(!Code_Gen_Model_Y.Swerve_Motors_Disabled)
+  {
     swerveDriveMotors.pullCommands();
     swerveSteerMotors.pullCommands();
+  }
 }
 
 void SwerveDrive::SmartDashboardCallback() {}

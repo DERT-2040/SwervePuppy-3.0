@@ -2,7 +2,8 @@
 
 // Create talon controller with CAN ID
 KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo)
-: talonController{createInfo.canID}
+: talonController{createInfo.canID, createInfo.canbus},
+dutyCycleControl{0}
 {
     initalizeTalon(createInfo);
 }
@@ -15,7 +16,9 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
 
     // Set Direction
     ctre::phoenix6::configs::MotorOutputConfigs motorDirectionConfig;
-    motorDirectionConfig.Inverted = createInfo.isReversed;
+    motorDirectionConfig.Inverted = createInfo.isReversed ? 
+        ctre::phoenix6::signals::InvertedValue::CounterClockwise_Positive : 
+        ctre::phoenix6::signals::InvertedValue::Clockwise_Positive;
     talonConfigurator.Apply(motorDirectionConfig);
 
     // Set Open Loop Ramp Period
@@ -26,35 +29,36 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
     // Set Current Limiting Configuration
     ctre::phoenix6::configs::CurrentLimitsConfigs currentLimitsConfig;
     currentLimitsConfig.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
-    currentLimitsConfig.StatorCurrentLimitEnable = true;
+    currentLimitsConfig.SupplyCurrentLimitEnable = true;
     talonConfigurator.Apply(currentLimitsConfig);
 
-    // Set Neutral Mode Output Behavior
-    ctre::phoenix6::configs::MotorOutputConfigs neutralModeConfig;
-    neutralModeConfig.NeutralMode = createInfo.neutralMode;
-    talonConfigurator.Apply(neutralModeConfig);
+    // Initialize Signal Objects
+    if(createInfo.getPositionCallback != nullptr)
+        *positionSignal = talonController.GetPosition();
+    if(createInfo.getVelocityCallback != nullptr)
+        *velocitySignal = talonController.GetVelocity();
 
+    // Initialize Duty Cycle Output Communication
+    dutyCycleControl.WithEnableFOC(createInfo.enableFOC);
+
+    // Store for later use
     finalCreateInfo = createInfo;
 }
 
 // Get Motor Encoder Position
 void KrakenTalon::getPositionCallback()
 {  
-    auto& encoderPositionSignal = talonController.GetPosition();
-    encoderPositionSignal.SetUpdateFrequency(50_Hz);
-    *finalCreateInfo.getPositionCallback = encoderPositionSignal.GetValueAsDouble();
+    *finalCreateInfo.getPositionCallback = positionSignal->GetValueAsDouble();
 }
 
 // Get Motor Encoder Velocity
 void KrakenTalon::getVelocityCallback()
-{
-    auto& encoderVelocitySignal = talonController.GetVelocity();
-    encoderVelocitySignal.SetUpdateFrequency(50_Hz);
-    *finalCreateInfo.getVelocityCallback = encoderVelocitySignal.GetValueAsDouble()*60;  // Convert from Rev/Sec to Rev/Min
+{  
+    *finalCreateInfo.getVelocityCallback = velocitySignal->GetValueAsDouble();
 }
 
 // Set Motor Duty Cycle
 void KrakenTalon::setDutyCycleCallback()
 {
-    talonController.Set(*finalCreateInfo.setDutyCycleCallback);
+    talonController.SetControl(dutyCycleControl.WithOutput(*finalCreateInfo.setDutyCycleCallback));
 }

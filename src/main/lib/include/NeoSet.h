@@ -16,7 +16,7 @@ public:
     NeoSet(std::initializer_list<NeoSparkCreateInfo> createInfos);
     void stop();
     void set(double dutyCycle);
-    void setAreBreakingWhenIdle(bool areBreaking);
+    void setBrakeModeWhenIdle(bool isBrakeMode);
     void pushData();
     void pullCommands();
 private:

@@ -25,11 +25,11 @@ void NeoSet::set(double dutyCycle)
     }
 }
 
-void NeoSet::setAreBreakingWhenIdle(bool areBreaking)
+void NeoSet::setBrakeModeWhenIdle(bool isBrakeMode)
 {
     for(auto& motor : motorSet)
     {
-        motor->sparkMax.SetIdleMode( (areBreaking) ? rev::CANSparkMax::IdleMode::kBrake : rev::CANSparkMax::IdleMode::kCoast );
+        motor->sparkMax.SetIdleMode( (isBrakeMode) ? rev::CANSparkMax::IdleMode::kBrake : rev::CANSparkMax::IdleMode::kCoast );
     }
 }
 

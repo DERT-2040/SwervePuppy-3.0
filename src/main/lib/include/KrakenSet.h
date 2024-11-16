@@ -16,6 +16,7 @@ public:
     KrakenSet(std::initializer_list<KrakenTalonCreateInfo> createInfos);
     void stop();
     void set(double dutyCycle);
+    void setBrakeModeWhenIdle(bool isBrakeMode);
     void pushData();
     void pullCommands();
 private:

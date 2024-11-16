@@ -33,11 +33,12 @@ namespace Constants
         {
             static constexpr KrakenTalonCreateInfo defaultDriveCreateInfo
             {
-                -1,                           // canID
+                -1,                           // CAN ID
+                "uno",                        // CAN Bus
                 false,                        // isReversed
                 80,                           // supplyCurrentLimit
                 0,                            // openLoopRampPeriod (seconds)
-                1,                            // neutralMode (coast = 0, brake = 1)
+                true                          // Field Oriented Control
             };
             static KrakenTalonCreateInfo frontLeft  = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
                                                                                  37, //CAN ID
@@ -72,7 +73,7 @@ namespace Constants
                 0.1,                                   // openLoopRampRate
                 kStatus1_ms,                           // status1PeriodicFramePeriod
                 kStatus2_ms,                           // status2PeriodicFramePeriod
-                false                                   // includeSensor
+                false                                  // includeSensor
             };
             static NeoSparkCreateInfo frontLeft  = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
                                                                                  20, //CAN ID

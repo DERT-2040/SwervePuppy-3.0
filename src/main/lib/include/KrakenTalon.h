@@ -2,20 +2,24 @@
 //std
 #include <optional>
 #include <cstdint>
+#include <string>
+//units
+#include <units/time.h>
 //ctre
-#include <ctre/Phoenix.h>
 #include <ctre/phoenix6/TalonFX.hpp>
 #include <ctre/phoenix6/core/CoreTalonFX.hpp>
 #include <ctre/phoenix6/configs/Configs.hpp>
+#include <ctre/phoenix6/StatusSignal.hpp>
 
 struct KrakenTalonCreateInfo
 {
     //motor
     int canID;
+    const char* canbus;
     bool isReversed = false;
     double supplyCurrentLimit = 15;
     double openLoopRampPeriod = 0;
-    int neutralMode = 1;  // coast = 0, brake = 1
+    bool enableFOC = true;
 
     //sensor
     double* setDutyCycleCallback = nullptr;
@@ -24,7 +28,7 @@ struct KrakenTalonCreateInfo
 
     static constexpr KrakenTalonCreateInfo modifyInfo(
         KrakenTalonCreateInfo oldCreateInfo,
-        int canID,
+        int canID,           // CAN ID for the device
         double* setDutyCycleCallback = nullptr,
         double* getVelocityCallback = nullptr,
         double* getPositionCallback = nullptr)
@@ -49,6 +53,9 @@ public:
     void getVelocityCallback();
     void setDutyCycleCallback();
     ctre::phoenix6::hardware::TalonFX talonController;
+    ctre::phoenix6::controls::DutyCycleOut dutyCycleControl;
+    std::optional<ctre::phoenix6::StatusSignal<units::angle::turn_t>> positionSignal;
+    std::optional<ctre::phoenix6::StatusSignal<units::angular_velocity::turns_per_second_t>> velocitySignal;
     KrakenTalonCreateInfo finalCreateInfo{};
 private:
     void initalizeTalon(KrakenTalonCreateInfo createInfo);
