@@ -4,6 +4,7 @@
 #include "include/Constants.h"
 #include "lib/include/Component.h"
 #include "lib/include/NeoSet.h"
+#include "lib/include/KrakenSet.h"
 #include "Code_Gen_Model_ert_rtw/Code_Gen_Model.h"
 //frc
 #include <frc/DutyCycleEncoder.h>
@@ -63,12 +64,17 @@ public:
     void Set_Wheel_Offset();
 
 private:
-  NeoSet swerveDriveMotors
+    KrakenSet swerveDriveMotors
   {
     {
       Drive::frontLeft, Drive::frontRight,
       Drive::backLeft, Drive::backRight,
-      // // // // // // // // // // // // //
+    }
+  };
+  
+  NeoSet swerveSteerMotors
+  {
+    {
       Steer::frontLeft, Steer::frontRight,
       Steer::backLeft, Steer::backRight
     }

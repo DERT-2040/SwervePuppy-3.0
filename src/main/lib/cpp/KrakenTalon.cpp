@@ -1,18 +1,13 @@
 #include "lib/include/KrakenTalon.h"
 
+// Create talon controller with the CAN ID
 KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo)
 : talonController{createInfo.canID}
 {
     initalizeTalon(createInfo);
 }
 
-KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo, int canID, bool isReversed)
-: talonController{canID}
-{
-    createInfo.isReversed = isReversed;
-    initalizeTalon(createInfo);
-}
-
+// Configure the talon controller settings
 void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
 {
     // Get Configurator to Apply configuration settings
@@ -23,7 +18,7 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
     motorDirection.Inverted = createInfo.isReversed;
     talonConfigurator.Apply(motorDirection);
 
-    // Set Open Loop Ramp Rate
+    // Set Open Loop Ramp Period
     ctre::phoenix6::configs::OpenLoopRampsConfigs rampPeriod;
     rampPeriod.DutyCycleOpenLoopRampPeriod = createInfo.openLoopRampPeriod;
     talonConfigurator.Apply(rampPeriod);
@@ -34,39 +29,27 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
     currentLimits.StatorCurrentLimitEnable = true;
     talonConfigurator.Apply(currentLimits);
 
-    // Get Motor Encoder Velocity
-    auto& encoderVelocitySignal = talonController.GetVelocity();
-    double encoderVelocity = encoderVelocitySignal.GetValueAsDouble()*60;    // Convert from Rev/Sec to Rev/Min
-
-    // Get Motor Encoder Position
-    auto& encoderPositionSignal = talonController.GetPosition();
-    double encoderPosition = encoderPositionSignal.GetValueAsDouble();
-
-    /*
-    sparkMax.RestoreFactoryDefaults(); - no equivalent function
-    sparkMax.SetInverted(createInfo.isReversed);
-    sparkMax.SetSmartCurrentLimit(createInfo.smartCurrentLimit);
-    sparkMax.SetSecondaryCurrentLimit(createInfo.secondaryCurrentLimit);
-    sparkMax.SetOpenLoopRampRate(createInfo.openLoopRampRate);
-    sparkMax.SetPeriodicFramePeriod(rev::CANSparkLowLevel::PeriodicFrame::kStatus1, createInfo.status1PeriodicFramePeriod);
-    sparkMax.SetPeriodicFramePeriod(rev::CANSparkLowLevel::PeriodicFrame::kStatus2, createInfo.status2PeriodicFramePeriod);
-    if(createInfo.includeSensor)
-        sparkRelEncoder = sparkMax.GetEncoder(createInfo.encoderType, createInfo.countsPerRev);
     finalCreateInfo = createInfo;
-    */
 }
 
-void NeoSpark::getPositionCallback()
-{
-    *finalCreateInfo.getPositionCallback = sparkRelEncoder->GetPosition();
+// Get Motor Encoder Position
+void KrakenTalon::getPositionCallback()
+{  
+    auto& encoderPositionSignal = talonController.GetPosition();
+    encoderPositionSignal.SetUpdateFrequency(50_Hz);
+    *finalCreateInfo.getPositionCallback = encoderPositionSignal.GetValueAsDouble();
 }
 
-void NeoSpark::getVelocityCallback()
+// Get Motor Encoder Velocity
+void KrakenTalon::getVelocityCallback()
 {
-    *finalCreateInfo.getVelocityCallback = sparkRelEncoder->GetVelocity();
+    auto& encoderVelocitySignal = talonController.GetVelocity();
+    encoderVelocitySignal.SetUpdateFrequency(50_Hz);
+    *finalCreateInfo.getVelocityCallback = encoderVelocitySignal.GetValueAsDouble()*60;  // Convert from Rev/Sec to Rev/Min
 }
 
-void NeoSpark::setDutyCycleCallback()
+// Set Motor Duty Cycle
+void KrakenTalon::setDutyCycleCallback()
 {
-    sparkMax.Set(*finalCreateInfo.setDutyCycleCallback);
+    talonController.Set(*finalCreateInfo.setDutyCycleCallback);
 }

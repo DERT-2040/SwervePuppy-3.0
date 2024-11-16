@@ -1,58 +1,47 @@
-#include "lib/include/NeoSet.h"
+#include "lib/include/KrakenSet.h"
 
-NeoSet::NeoSet(std::initializer_list<NeoSparkCreateInfo> createInfos)
+KrakenSet::KrakenSet(std::initializer_list<KrakenTalonCreateInfo> createInfos)
 {
     for(auto createInfo : createInfos)
     {
-        motorSet.push_back(std::make_unique<NeoSpark>(createInfo));
+        motorSet.push_back(std::make_unique<KrakenTalon>(createInfo));
         addCallbacks(*motorSet.back());
     }
 }
 
-void NeoSet::stop()
+void KrakenSet::stop()
 {
     for(auto& motor : motorSet)
     {
-        motor->sparkMax.StopMotor();
+        motor->talonController.StopMotor();
     }
 }
 
-void NeoSet::set(double dutyCycle)
+void KrakenSet::set(double dutyCycle)
 {
     for(auto& motor : motorSet)
     {
-        motor->sparkMax.Set(dutyCycle);
+        motor->talonController.Set(dutyCycle);
     }
 }
 
-void NeoSet::setAreBreakingWhenIdle(bool areBreaking)
-{
-    for(auto& motor : motorSet)
-    {
-        motor->sparkMax.SetIdleMode( (areBreaking) ? rev::CANSparkMax::IdleMode::kBrake : rev::CANSparkMax::IdleMode::kCoast );
-    }
-}
-
-void NeoSet::addCallbacks(NeoSpark& motor)
+void KrakenSet::addCallbacks(KrakenTalon& motor)
 {
     if(motor.finalCreateInfo.setDutyCycleCallback != nullptr)
-        pullCommandCalbacks.push_back(std::bind(&NeoSpark::setDutyCycleCallback, &motor));
-    if(motor.finalCreateInfo.includeSensor == true)
-    {
-        if(motor.finalCreateInfo.getPositionCallback != nullptr)
-            pushDataCalbacks.push_back(std::bind(&NeoSpark::getPositionCallback, &motor));
-        if(motor.finalCreateInfo.getVelocityCallback != nullptr)
-            pushDataCalbacks.push_back(std::bind(&NeoSpark::getVelocityCallback, &motor));
-    }
+        pullCommandCalbacks.push_back(std::bind(&KrakenTalon::setDutyCycleCallback, &motor));
+    if(motor.finalCreateInfo.getPositionCallback != nullptr)
+        pushDataCalbacks.push_back(std::bind(&KrakenTalon::getPositionCallback, &motor));
+    if(motor.finalCreateInfo.getVelocityCallback != nullptr)
+        pushDataCalbacks.push_back(std::bind(&KrakenTalon::getVelocityCallback, &motor));
 }
 
-void NeoSet::pushData()
+void KrakenSet::pushData()
 {
     for(auto func : pushDataCalbacks)
         func();
 }
 
-void NeoSet::pullCommands()
+void KrakenSet::pullCommands()
 {
     for(auto func : pullCommandCalbacks)
         func();

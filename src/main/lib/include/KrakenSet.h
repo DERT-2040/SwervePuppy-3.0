@@ -6,17 +6,16 @@
 #include <functional>
 //local
 #include "lib/include/KrakenTalon.h"
-//rev
+//stre
 #include <ctre/phoenix6/TalonFX.hpp>
 #include <ctre/phoenix6/core/CoreTalonFX.hpp>
 
 class KrakenSet
 {
 public:
-    KrakenSet(std::initializer_list<KrakenTalon> createInfos);
+    KrakenSet(std::initializer_list<KrakenTalonCreateInfo> createInfos);
     void stop();
     void set(double dutyCycle);
-    void setAreBreakingWhenIdle(bool areBreaking);
     void pushData();
     void pullCommands();
 private:

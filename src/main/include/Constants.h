@@ -3,6 +3,7 @@
 #include <string>
 //local
 #include "lib/include/NeoSpark.h"
+#include "lib/include/KrakenTalon.h"
 #include "Code_Gen_Model_ert_rtw/Code_Gen_Model.h"
 
 namespace Constants
@@ -30,37 +31,33 @@ namespace Constants
             static constexpr int kStatus2_ms = 60; //ms
         namespace Drive
         {
-            static constexpr NeoSparkCreateInfo defaultDriveCreateInfo
+            static constexpr KrakenTalonCreateInfo defaultDriveCreateInfo
             {
-                -1,                                    // canID
-                false,                                 // isReversed
-                15,                                    // smartCurrentLimit
-                15,                                    // secondaryCurrentLimit
-                0.00000001,                            // openLoopRampRate
-                kStatus1_ms,                           // status1PeriodicFramePeriod
-                kStatus2_ms,                           // status2PeriodicFramePeriod
-                true                                   // includeSensor
+                -1,                           // canID
+                false,                        // isReversed
+                15,                           // supplyCurrentLimit
+                0,                            // openLoopRampPeriod
             };
-            static NeoSparkCreateInfo frontLeft  = NeoSparkCreateInfo::modifyInfo(defaultDriveCreateInfo,
+            static KrakenTalonCreateInfo frontLeft  = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
                                                                                  37, //CAN ID
                                                                                  &Code_Gen_Model_Y.FrontLeft_Drive_DutyCycle,
                                                                                  &Code_Gen_Model_U.FrontLeft_Drive_Motor_Speed,
                                                                                  &Code_Gen_Model_U.FrontLeft_Drive_Motor_Rev);
-            static NeoSparkCreateInfo frontRight = NeoSparkCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                  11, //CAN ID
-                                                                                  &Code_Gen_Model_Y.FrontRight_Drive_DutyCycle,
-                                                                                  &Code_Gen_Model_U.FrontRight_Drive_Motor_Speed,
-                                                                                  &Code_Gen_Model_U.FrontRight_Drive_Motor_Rev);
-            static NeoSparkCreateInfo backLeft   = NeoSparkCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                  14, //CAN ID
-                                                                                  &Code_Gen_Model_Y.BackLeft_Drive_DutyCycle,
-                                                                                  &Code_Gen_Model_U.BackLeft_Drive_Motor_Speed,
-                                                                                  &Code_Gen_Model_U.BackLeft_Drive_Motor_Rev);
-            static NeoSparkCreateInfo backRight  = NeoSparkCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                  30, //CAN ID
-                                                                                  &Code_Gen_Model_Y.BackRight_Drive_DutyCycle,
-                                                                                  &Code_Gen_Model_U.BackRight_Drive_Motor_Speed,
-                                                                                  &Code_Gen_Model_U.BackRight_Drive_Motor_Rev);
+            static KrakenTalonCreateInfo frontRight = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
+                                                                                 11, //CAN ID
+                                                                                 &Code_Gen_Model_Y.FrontRight_Drive_DutyCycle,
+                                                                                 &Code_Gen_Model_U.FrontRight_Drive_Motor_Speed,
+                                                                                 &Code_Gen_Model_U.FrontRight_Drive_Motor_Rev);
+            static KrakenTalonCreateInfo backLeft   = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
+                                                                                 14, //CAN ID
+                                                                                 &Code_Gen_Model_Y.BackLeft_Drive_DutyCycle,
+                                                                                 &Code_Gen_Model_U.BackLeft_Drive_Motor_Speed,
+                                                                                 &Code_Gen_Model_U.BackLeft_Drive_Motor_Rev);
+            static KrakenTalonCreateInfo backRight  = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
+                                                                                 30, //CAN ID
+                                                                                 &Code_Gen_Model_Y.BackRight_Drive_DutyCycle,
+                                                                                 &Code_Gen_Model_U.BackRight_Drive_Motor_Speed,
+                                                                                 &Code_Gen_Model_U.BackRight_Drive_Motor_Rev);
         };
         
         namespace Steer
@@ -77,17 +74,17 @@ namespace Constants
                 false                                   // includeSensor
             };
             static NeoSparkCreateInfo frontLeft  = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                  20, //CAN ID
-                                                                                  &Code_Gen_Model_Y.FrontLeft_Steer_DutyCycle);
+                                                                                 20, //CAN ID
+                                                                                 &Code_Gen_Model_Y.FrontLeft_Steer_DutyCycle);
             static NeoSparkCreateInfo frontRight = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                  17, //CAN ID
-                                                                                  &Code_Gen_Model_Y.FrontRight_Steer_DutyCycle);
+                                                                                 17, //CAN ID
+                                                                                 &Code_Gen_Model_Y.FrontRight_Steer_DutyCycle);
             static NeoSparkCreateInfo backLeft   = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                  16, //CAN ID
-                                                                                  &Code_Gen_Model_Y.BackLeft_Steer_DutyCycle);
+                                                                                 16, //CAN ID
+                                                                                 &Code_Gen_Model_Y.BackLeft_Steer_DutyCycle);
             static NeoSparkCreateInfo backRight  = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                  15, //CAN ID
-                                                                                  &Code_Gen_Model_Y.BackRight_Steer_DutyCycle);
+                                                                                 15, //CAN ID
+                                                                                 &Code_Gen_Model_Y.BackRight_Steer_DutyCycle);
         };
     };
     

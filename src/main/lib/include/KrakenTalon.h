@@ -2,7 +2,7 @@
 //std
 #include <optional>
 #include <cstdint>
-//rev
+//ctre
 #include <ctre/Phoenix.h>
 #include <ctre/phoenix6/TalonFX.hpp>
 #include <ctre/phoenix6/core/CoreTalonFX.hpp>
@@ -14,11 +14,9 @@ struct KrakenTalonCreateInfo
     int canID;
     bool isReversed = false;
     double supplyCurrentLimit = 15;
-    double openLoopRampPeriod = 0.00000001;
+    double openLoopRampPeriod = 0;
 
     //sensor
-    bool includeSensor;
-    int countsPerRev = 42;
     double* setDutyCycleCallback = nullptr;
     double* getVelocityCallback = nullptr;
     double* getPositionCallback = nullptr;
@@ -43,8 +41,7 @@ class KrakenTalon
 {
 public:
     KrakenTalon(KrakenTalonCreateInfo createInfo);
-    KrakenTalon(int canID, bool includeSensor);
-    KrakenTalon(KrakenTalonCreateInfo createInfo, int canID, bool isReversed);
+    KrakenTalon(KrakenTalonCreateInfo createInfo, int canID);
     KrakenTalon(KrakenTalon&& other) noexcept;
 
     void getPositionCallback();

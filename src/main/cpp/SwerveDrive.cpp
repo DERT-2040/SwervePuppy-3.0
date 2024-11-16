@@ -49,6 +49,7 @@ void SwerveDrive::PostStepCallback()
 
   if(!Code_Gen_Model_Y.Swerve_Motors_Disabled)
     swerveDriveMotors.pullCommands();
+    swerveSteerMotors.pullCommands();
 }
 
 void SwerveDrive::SmartDashboardCallback() {}
