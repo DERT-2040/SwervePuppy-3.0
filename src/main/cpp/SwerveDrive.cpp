@@ -18,7 +18,7 @@ void SwerveDrive::PreStepCallback()
   Code_Gen_Model_U.BackRight_Steer_Rev = m_BackRight_Steer_Encoder.GetPosition().GetValue().value();
 }
 
-void SwerveDrive::PostStepCallback() 
+void SwerveDrive::PostStepCallback()
 {
    /**
    * Wheel calibration procedure:
