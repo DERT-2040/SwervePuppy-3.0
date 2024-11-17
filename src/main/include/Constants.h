@@ -68,8 +68,8 @@ namespace Constants
             {
                 -1,                                    // canID
                 true,                                  // isReversed
-                20,                                    // smartCurrentLimit
-                20,                                    // secondaryCurrentLimit
+                60,                                    // smartCurrentLimit
+                60,                                    // secondaryCurrentLimit
                 0.1,                                   // openLoopRampRate
                 kStatus1_ms,                           // status1PeriodicFramePeriod
                 kStatus2_ms,                           // status2PeriodicFramePeriod

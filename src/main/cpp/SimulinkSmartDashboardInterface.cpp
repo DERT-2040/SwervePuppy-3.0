@@ -149,7 +149,7 @@ SimulinkSmartDashboardInterface::SimulinkSmartDashboardInterface()
  
     __Drive_Motor_Control_FF__Entry = NTtable_Tune->GetEntry("Drive_Motor_Control_FF");
     NTinst.AddListener(__Drive_Motor_Control_FF__Entry, nt::EventFlags::kValueAll, [] (const nt::Event& event) {Drive_Motor_Control_FF = event.GetValueEventData()->value.GetDouble();});
-    __Drive_Motor_Control_FF__Entry.SetDouble(0.00018182);
+    __Drive_Motor_Control_FF__Entry.SetDouble(0.00016129);
  
     __Drive_Motor_Control_I__Entry = NTtable_Tune->GetEntry("Drive_Motor_Control_I");
     NTinst.AddListener(__Drive_Motor_Control_I__Entry, nt::EventFlags::kValueAll, [] (const nt::Event& event) {Drive_Motor_Control_I = event.GetValueEventData()->value.GetDouble();});

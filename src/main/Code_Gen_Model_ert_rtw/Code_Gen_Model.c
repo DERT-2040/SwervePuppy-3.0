@@ -9,7 +9,7 @@
  *
  * Model version                  : 2.219
  * Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
- * C/C++ source code generated on : Sun Sep 29 12:15:02 2024
+ * C/C++ source code generated on : Sat Nov 16 22:43:48 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM 7
@@ -153,7 +153,7 @@ real_T Drive_Motor_Control_D_UL = 0.2; /* Variable: Drive_Motor_Control_D_UL
                                         *   '<S209>/Saturation'
                                         *   '<S230>/Saturation'
                                         */
-real_T Drive_Motor_Control_FF = 0.00018182;/* Variable: Drive_Motor_Control_FF
+real_T Drive_Motor_Control_FF = 0.00016129;/* Variable: Drive_Motor_Control_FF
                                             * Referenced by:
                                             *   '<S167>/Gain'
                                             *   '<S188>/Gain'
@@ -3224,7 +3224,7 @@ void Code_Gen_Model_step(void)
    *  Constant: '<S286>/Constant'
    *  MinMax: '<S286>/Max'
    */
-  rtb_rx_nr = 4.7808428170320649 / fmax(fmax(fmax(fmax(4.7808428170320649,
+  rtb_rx_nr = 5.389313721017964 / fmax(fmax(fmax(fmax(5.389313721017964,
     Code_Gen_Model_B.FL_Desired_Wheel_Speed_in),
     Code_Gen_Model_B.FR_Desired_Wheel_Speed_in),
     Code_Gen_Model_B.BL_Desired_Wheel_Speed_in),

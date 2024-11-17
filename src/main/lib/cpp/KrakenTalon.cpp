@@ -54,7 +54,7 @@ void KrakenTalon::getPositionCallback()
 // Get Motor Encoder Velocity
 void KrakenTalon::getVelocityCallback()
 {  
-    *finalCreateInfo.getVelocityCallback = velocitySignal->GetValueAsDouble();
+    *finalCreateInfo.getVelocityCallback = velocitySignal->GetValueAsDouble()*60;  // Multiply by 60 for Rev/Sec to Rev/Min
 }
 
 // Set Motor Duty Cycle

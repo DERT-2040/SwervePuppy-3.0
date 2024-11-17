@@ -46,7 +46,7 @@ gear_ratio = 6.12;  % L1 gear ratio = 8.14,  L3 gear ratio = 6.12
 wheel_diameter = 0.101600203;
 Wheel_Speed_to_Motor_Speed = 60*gear_ratio/(wheel_diameter*pi); % (rev/min)/(m/sec)
 
-Drive_Motor_Max_Speed = 5500; % rpm  (also used below for PID feedforward gain)
+Drive_Motor_Max_Speed = 6200; % rpm  (also used below for PID feedforward gain)
 Drive_Wheel_Max_Speed = Drive_Motor_Max_Speed/Wheel_Speed_to_Motor_Speed; % m/sec
 
 % Ran a test without the adjustment factor with the following results
