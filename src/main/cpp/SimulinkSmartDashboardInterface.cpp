@@ -129,7 +129,7 @@ SimulinkSmartDashboardInterface::SimulinkSmartDashboardInterface()
  
     __Distance_FL_y__Entry = NTtable_Tune->GetEntry("Distance_FL_y");
     NTinst.AddListener(__Distance_FL_y__Entry, nt::EventFlags::kValueAll, [] (const nt::Event& event) {Distance_FL_y = event.GetValueEventData()->value.GetDouble();});
-    __Distance_FL_y__Entry.SetDouble(0.26194);
+    __Distance_FL_y__Entry.SetDouble(0.18732);
  
     __Drive_Motor_Control_D__Entry = NTtable_Tune->GetEntry("Drive_Motor_Control_D");
     NTinst.AddListener(__Drive_Motor_Control_D__Entry, nt::EventFlags::kValueAll, [] (const nt::Event& event) {Drive_Motor_Control_D = event.GetValueEventData()->value.GetDouble();});

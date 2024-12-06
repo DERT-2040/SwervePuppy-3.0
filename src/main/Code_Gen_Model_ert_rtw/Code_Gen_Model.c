@@ -9,7 +9,7 @@
  *
  * Model version                  : 2.219
  * Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
- * C/C++ source code generated on : Sat Nov 16 22:43:48 2024
+ * C/C++ source code generated on : Thu Nov 28 14:39:10 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM 7
@@ -121,7 +121,7 @@ real_T Boost_Trigger_Increasing_Limit = 3.5;
 real_T Boost_Trigger_Low_Speed = 1.5;  /* Variable: Boost_Trigger_Low_Speed
                                         * Referenced by: '<S323>/Constant1'
                                         */
-real_T Distance_FL_y = 0.26194;        /* Variable: Distance_FL_y
+real_T Distance_FL_y = 0.18732;        /* Variable: Distance_FL_y
                                         * Referenced by: '<S251>/Constant4'
                                         */
 real_T Drive_Motor_Control_D = 0.0001; /* Variable: Drive_Motor_Control_D
@@ -2814,7 +2814,7 @@ void Code_Gen_Model_step(void)
    *  Constant: '<S251>/Constant5'
    *  Trigonometry: '<S251>/Atan2'
    */
-  rtb_rx_nr = rt_atan2d_snf(Distance_FL_y, 0.2619375) + 1.5707963267948966;
+  rtb_rx_nr = rt_atan2d_snf(Distance_FL_y, 0.187325) + 1.5707963267948966;
 
   /* End of Outputs for SubSystem: '<S165>/Initialize Function' */
 
