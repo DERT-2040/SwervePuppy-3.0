@@ -1,5 +1,6 @@
 #include "lib/include/KrakenTalon.h"
 
+#include <iostream>
 // Create talon controller with CAN ID
 KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo)
 : talonController{createInfo.canID, createInfo.canbus},
@@ -48,12 +49,14 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
 // Get Motor Encoder Position
 void KrakenTalon::getPositionCallback()
 {  
+    positionSignal->Refresh();
     *finalCreateInfo.getPositionCallback = positionSignal->GetValueAsDouble();
 }
 
 // Get Motor Encoder Velocity
 void KrakenTalon::getVelocityCallback()
 {  
+    velocitySignal->Refresh();
     *finalCreateInfo.getVelocityCallback = velocitySignal->GetValueAsDouble()*60;  // Multiply by 60 for Rev/Sec to Rev/Min
 }
 
