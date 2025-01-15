@@ -71,8 +71,6 @@ namespace Constants
                 60,                                    // smartCurrentLimit
                 60,                                    // secondaryCurrentLimit
                 0.1,                                   // openLoopRampRate
-                kStatus1_ms,                           // status1PeriodicFramePeriod
-                kStatus2_ms,                           // status2PeriodicFramePeriod
                 false                                  // includeSensor
             };
             static NeoSparkCreateInfo frontLeft  = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,

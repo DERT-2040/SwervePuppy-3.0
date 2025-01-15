@@ -27,9 +27,13 @@ void NeoSet::set(double dutyCycle)
 
 void NeoSet::setBrakeModeWhenIdle(bool isBrakeMode)
 {
+    rev::spark::SparkMaxConfig config{};
+    config.SetIdleMode((isBrakeMode) ?  rev::spark::SparkBaseConfig::IdleMode::kBrake :  rev::spark::SparkBaseConfig::IdleMode::kCoast );
     for(auto& motor : motorSet)
     {
-        motor->sparkMax.SetIdleMode( (isBrakeMode) ? rev::spark::SparkMax::IdleMode::kBrake : rev::spark::SparkMax::IdleMode::kCoast );
+        motor->sparkMax.Configure(config,
+                                  rev::spark::SparkBase::ResetMode::kNoResetSafeParameters,
+                                  rev::spark::SparkBase::PersistMode::kNoPersistParameters);
     }
 }
 

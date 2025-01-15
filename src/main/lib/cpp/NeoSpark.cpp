@@ -22,15 +22,17 @@ NeoSpark::NeoSpark(NeoSparkCreateInfo createInfo, int canID, bool isReversed)
 
 void NeoSpark::initalizeSpark(NeoSparkCreateInfo createInfo)
 {
-    sparkMax.RestoreFactoryDefaults();
-    sparkMax.SetInverted(createInfo.isReversed);
-    sparkMax.SetSmartCurrentLimit(createInfo.smartCurrentLimit);
-    sparkMax.SetSecondaryCurrentLimit(createInfo.secondaryCurrentLimit);
-    sparkMax.SetOpenLoopRampRate(createInfo.openLoopRampRate);
-    sparkMax.SetPeriodicFramePeriod(rev::spark::SparkLowLevel::PeriodicFrame::kStatus1, createInfo.status1PeriodicFramePeriod);
-    sparkMax.SetPeriodicFramePeriod(rev::spark::SparkLowLevel::PeriodicFrame::kStatus2, createInfo.status2PeriodicFramePeriod);
+    rev::spark::SparkMaxConfig config{};
+    config
+        .Inverted(createInfo.isReversed)
+        .SmartCurrentLimit(createInfo.smartCurrentLimit)
+        .SecondaryCurrentLimit(createInfo.secondaryCurrentLimit)
+        .OpenLoopRampRate(createInfo.openLoopRampRate);
+    sparkMax.Configure(config,
+                       rev::spark::SparkBase::ResetMode::kResetSafeParameters,
+                       rev::spark::SparkBase::PersistMode::kNoPersistParameters);
     if(createInfo.includeSensor)
-        sparkRelEncoder = sparkMax.GetEncoder(createInfo.encoderType, createInfo.countsPerRev);
+        sparkRelEncoder = sparkMax.GetEncoder();
     finalCreateInfo = createInfo;
 }
 

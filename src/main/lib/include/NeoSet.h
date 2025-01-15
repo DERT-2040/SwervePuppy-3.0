@@ -9,6 +9,7 @@
 #include "lib/include/NeoSpark.h"
 //rev
 #include <rev/SparkMax.h>
+#include <rev/config/SparkMaxConfig.h>
 #include <rev/SparkRelativeEncoder.h>
 
 class NeoSet
