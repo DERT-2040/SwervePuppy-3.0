@@ -3,7 +3,7 @@
 #include <optional>
 #include <cstdint>
 //rev
-#include <rev/CANSparkMax.h>
+#include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 
 struct NeoSparkCreateInfo
@@ -22,8 +22,8 @@ struct NeoSparkCreateInfo
     double* setDutyCycleCallback = nullptr;
     double* getVelocityCallback = nullptr;
     double* getPositionCallback = nullptr;
-    rev::CANSparkMax::MotorType motorType = rev::CANSparkMax::MotorType::kBrushless;
-    rev::SparkRelativeEncoder::Type encoderType = rev::SparkRelativeEncoder::Type::kHallSensor;
+    rev::spark::SparkMax::MotorType motorType = rev::spark::SparkMax::MotorType::kBrushless;
+    rev::spark::SparkRelativeEncoder::Type encoderType = rev::spark::SparkRelativeEncoder::Type::kHallSensor;
 
     static constexpr NeoSparkCreateInfo modifyInfo(
         NeoSparkCreateInfo oldCreateInfo,
@@ -53,8 +53,8 @@ public:
     void getVelocityCallback();
     void setDutyCycleCallback();
 
-    rev::CANSparkMax sparkMax;
-    std::optional<rev::SparkRelativeEncoder> sparkRelEncoder;
+    rev::spark::SparkMax sparkMax;
+    std::optional<rev::spark::SparkRelativeEncoder> sparkRelEncoder;
     NeoSparkCreateInfo finalCreateInfo{};
 private:
     void initalizeSpark(NeoSparkCreateInfo createInfo);

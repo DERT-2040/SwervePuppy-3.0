@@ -4,10 +4,11 @@
 #include <algorithm>
 #include <vector>
 #include <functional>
+#include <memory>
 //local
 #include "lib/include/NeoSpark.h"
 //rev
-#include <rev/CANSparkMax.h>
+#include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 
 class NeoSet

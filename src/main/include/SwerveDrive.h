@@ -11,7 +11,7 @@
 #include <frc/Preferences.h>
 #include <frc/smartdashboard/SmartDashboard.h> 
 //rev
-#include <rev/CANSparkMax.h>
+#include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 //ctr
 #include <ctre/phoenix6/CANcoder.hpp>
