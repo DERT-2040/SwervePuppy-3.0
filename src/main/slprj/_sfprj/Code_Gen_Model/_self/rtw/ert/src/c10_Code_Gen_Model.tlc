@@ -1,0 +1,109 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   13 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "Timer"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Timer"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "CloseNoteCounter"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "CloseNoteCounter"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_active_c10_Code_Gen_Model"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_c10_Code_Gen_Model"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "exitPortIndex"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "entryPortIndex"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Note6"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Note6"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "exitPortIndex"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "entryPortIndex"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Note7"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Note7"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "exitPortIndex"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "entryPortIndex"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Note8"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Note8"\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

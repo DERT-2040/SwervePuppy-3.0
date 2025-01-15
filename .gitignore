@@ -169,6 +169,8 @@ out/
 .fleet
 
 # Simulation GUI and other tools window save file
+networktables.json
+simgui.json
 *-window.json
 
 # Simulation data log directory
@@ -177,39 +179,9 @@ logs/
 # Folder that has CTRE Phoenix Sim device config storage
 ctre_sim/
 
-# BELOW COPIED FROM SIMULINK PROJECT
+# clangd
+/.cache
+compile_commands.json
 
-# Autosave files
-*.asv
-*.m~
-*.autosave
-*.slx.r*
-*.mdl.r*
-
-# Derived content-obscured files
-*.p
-
-# Compiled MEX files
-*.mex*
-
-# Packaged app and toolbox files
-*.mlappinstall
-*.mltbx
-
-# Deployable archives
-*.ctf
-
-# Generated helpsearch folders
-helpsearch*/
-
-# Code generation folders
-slprj/
-sccprj/
-codegen/
-
-# Cache files
-*.slxc
-
-# Cloud based storage dotfile
-.MATLABDriveTag
-
+# Eclipse generated file for annotation processors
+.factorypath
