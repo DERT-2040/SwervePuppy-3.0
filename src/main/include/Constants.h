@@ -12,10 +12,10 @@ namespace Constants
     {
     //Steer Encoder Ports
     //TODO: Use CTR Tuning software to set the CAN ids.
-        static constexpr int k_FrontLeft_Steer_Encoder_ID = 3;
-        static constexpr int k_FrontRight_Steer_Encoder_ID = 21;
-        static constexpr int k_BackLeft_Steer_Encoder_ID = 1;
-        static constexpr int k_BackRight_Steer_Encoder_ID = 25;
+        static constexpr int k_FrontLeft_Steer_Encoder_ID = 1;
+        static constexpr int k_FrontRight_Steer_Encoder_ID = 2;
+        static constexpr int k_BackLeft_Steer_Encoder_ID = 3;
+        static constexpr int k_BackRight_Steer_Encoder_ID = 4;
     
     //Wheel Offset Keys
         static constexpr std::string_view k_FrontLeft_Wheel_Offset_Key = "FrontLeftWheelOffset";
@@ -41,22 +41,22 @@ namespace Constants
                 true                          // Field Oriented Control
             };
             static KrakenTalonCreateInfo frontLeft  = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                 14, //CAN ID
+                                                                                 1, //CAN ID
                                                                                  &Code_Gen_Model_Y.FrontLeft_Drive_DutyCycle,
                                                                                  &Code_Gen_Model_U.FrontLeft_Drive_Motor_Speed,
                                                                                  &Code_Gen_Model_U.FrontLeft_Drive_Motor_Rev);
             static KrakenTalonCreateInfo frontRight = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                 11, //CAN ID
+                                                                                 2, //CAN ID
                                                                                  &Code_Gen_Model_Y.FrontRight_Drive_DutyCycle,
                                                                                  &Code_Gen_Model_U.FrontRight_Drive_Motor_Speed,
                                                                                  &Code_Gen_Model_U.FrontRight_Drive_Motor_Rev);
             static KrakenTalonCreateInfo backLeft   = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                 13, //CAN ID
+                                                                                 3, //CAN ID
                                                                                  &Code_Gen_Model_Y.BackLeft_Drive_DutyCycle,
                                                                                  &Code_Gen_Model_U.BackLeft_Drive_Motor_Speed,
                                                                                  &Code_Gen_Model_U.BackLeft_Drive_Motor_Rev);
             static KrakenTalonCreateInfo backRight  = KrakenTalonCreateInfo::modifyInfo(defaultDriveCreateInfo,
-                                                                                 12, //CAN ID
+                                                                                 4, //CAN ID
                                                                                  &Code_Gen_Model_Y.BackRight_Drive_DutyCycle,
                                                                                  &Code_Gen_Model_U.BackRight_Drive_Motor_Speed,
                                                                                  &Code_Gen_Model_U.BackRight_Drive_Motor_Rev);
@@ -76,16 +76,16 @@ namespace Constants
                 false                                  // includeSensor
             };
             static NeoSparkCreateInfo frontLeft  = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                 20, //CAN ID
+                                                                                 1, //CAN ID
                                                                                  &Code_Gen_Model_Y.FrontLeft_Steer_DutyCycle);
             static NeoSparkCreateInfo frontRight = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                 17, //CAN ID
+                                                                                 2, //CAN ID
                                                                                  &Code_Gen_Model_Y.FrontRight_Steer_DutyCycle);
             static NeoSparkCreateInfo backLeft   = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                 16, //CAN ID
+                                                                                 3, //CAN ID
                                                                                  &Code_Gen_Model_Y.BackLeft_Steer_DutyCycle);
             static NeoSparkCreateInfo backRight  = NeoSparkCreateInfo::modifyInfo(defaultSteerCreateInfo,
-                                                                                 15, //CAN ID
+                                                                                 4, //CAN ID
                                                                                  &Code_Gen_Model_Y.BackRight_Steer_DutyCycle);
         };
     };
@@ -99,7 +99,7 @@ namespace Constants
 
     namespace IMU
     {
-        static constexpr int k_Pigeon2_Device_ID = 0;
+        static constexpr int k_Pigeon2_Device_ID = 5;
         static constexpr std::string_view k_Pigeon2_Device_Name = "uno";
     };
 };
