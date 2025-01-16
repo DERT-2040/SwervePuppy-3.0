@@ -29,8 +29,8 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
 
     // Set Current Limiting Configuration
     ctre::phoenix6::configs::CurrentLimitsConfigs currentLimitsConfig;
-    units::current::ampere_t openLoopRampPeriod_current {createInfo.supplyCurrentLimit};
-    currentLimitsConfig.SupplyCurrentLimit = openLoopRampPeriod_current;
+    units::current::ampere_t supplyCurrentLimit_amps {createInfo.supplyCurrentLimit};
+    currentLimitsConfig.SupplyCurrentLimit = supplyCurrentLimit_amps;
     currentLimitsConfig.SupplyCurrentLimitEnable = true;
     talonConfigurator.Apply(currentLimitsConfig);
 
@@ -50,14 +50,12 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
 // Get Motor Encoder Position
 void KrakenTalon::getPositionCallback()
 {  
-    positionSignal->Refresh();
     *finalCreateInfo.getPositionCallback = positionSignal->GetValueAsDouble();
 }
 
 // Get Motor Encoder Velocity
 void KrakenTalon::getVelocityCallback()
 {  
-    velocitySignal->Refresh();
     *finalCreateInfo.getVelocityCallback = velocitySignal->GetValueAsDouble()*60;  // Multiply by 60 for Rev/Sec to Rev/Min
 }
 
