@@ -5,6 +5,7 @@
 #include <string>
 //units
 #include <units/time.h>
+#include <units/current.h>
 //ctre
 #include <ctre/phoenix6/TalonFX.hpp>
 #include <ctre/phoenix6/core/CoreTalonFX.hpp>

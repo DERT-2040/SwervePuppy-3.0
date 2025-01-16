@@ -1,5 +1,5 @@
 #include "include/PhotonVisionInterface.h"
-
+/*
 void PhotonVisionInterface::PreStepCallback() 
 {
     // Getting data from the PoseEstimator
@@ -85,3 +85,4 @@ PhotonVisionInterface::PhotonVisionInterface()
 {
     photonEstimator.SetMultiTagFallbackStrategy(photon::PoseStrategy::LOWEST_AMBIGUITY);
 }
+*/

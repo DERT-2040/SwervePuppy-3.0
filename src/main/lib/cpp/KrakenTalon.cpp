@@ -1,6 +1,5 @@
 #include "lib/include/KrakenTalon.h"
 
-#include <iostream>
 // Create talon controller with CAN ID
 KrakenTalon::KrakenTalon(KrakenTalonCreateInfo createInfo)
 : talonController{createInfo.canID, createInfo.canbus},
@@ -24,12 +23,14 @@ void KrakenTalon::initalizeTalon(KrakenTalonCreateInfo createInfo)
 
     // Set Open Loop Ramp Period
     ctre::phoenix6::configs::OpenLoopRampsConfigs rampPeriodConfig;
-    rampPeriodConfig.DutyCycleOpenLoopRampPeriod = createInfo.openLoopRampPeriod;
+    units::time::second_t openLoopRampPeriod_time {createInfo.openLoopRampPeriod};
+    rampPeriodConfig.DutyCycleOpenLoopRampPeriod = openLoopRampPeriod_time;
     talonConfigurator.Apply(rampPeriodConfig);
 
     // Set Current Limiting Configuration
     ctre::phoenix6::configs::CurrentLimitsConfigs currentLimitsConfig;
-    currentLimitsConfig.SupplyCurrentLimit = createInfo.supplyCurrentLimit;
+    units::current::ampere_t openLoopRampPeriod_current {createInfo.supplyCurrentLimit};
+    currentLimitsConfig.SupplyCurrentLimit = openLoopRampPeriod_current;
     currentLimitsConfig.SupplyCurrentLimitEnable = true;
     talonConfigurator.Apply(currentLimitsConfig);
 

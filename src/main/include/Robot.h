@@ -136,7 +136,7 @@ private:
   /**
    * Component for all Tunable Parameters created by simulink
    */
-  SimulinkSmartDashboardInterface m_SimulinkSmartDashboardInterface;  
+  //SimulinkSmartDashboardInterface m_SimulinkSmartDashboardInterface;  
   
   /**
    * Component that reads the field management system info from smart dashboard and puts it into simulink
